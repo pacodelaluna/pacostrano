@@ -1,0 +1,13 @@
+Pacostrano is just a bench of few scripts allowing me to set up, to debug and to deploy applications quickly on my server.
+It is not really generic for the moment but I guess you can try to use it for small purpose, adapting some rules.
+
+# INSTALLATION
+Once you have capified your app, you have to tell Capistrano where are Pacostrano sources, so add inside the 'Capfile' file something like :
+Dir['/path/to/pacostrano_sources/**/*.rb'].each { |source| load(source) }
+
+# CONFIGURATION
+Inside the Pacostrano sources, you have a file 'deploy_model.rb'. You should copy/paste that code inside the deploy.rb file of your application and so filled the various information required. Here you will set the main information for deployment.
+Yet, as it can have a lot of informations inside the /config folder, in order not to overload the deply.rb file, Pacostrano is using a different process to load the config files. Regarding the configuration files (from /config), you have to put the config files you want to customize on the server inside the folder /config/server/config. So for example, the database description you want to have on the server should be set inside the file /config/server/config/database.yml. Pacostrano allows you later to upload directly these files to the server and to symlink automatically these files to the current deployment.
+
+# François Turbelin
+# 2009
